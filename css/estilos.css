@@ -1,10 +1,11 @@
 #logo {
-    height: 30%;
+    /* height: 30%; */
     width: 25%;
     position: absolute;
-    top: 0%;
-    left: 10%;
-    margin: 50px;
+    top: 2em;
+    left: 13%;
+    /* margin: 50px; */
+
 }
 
 #background-header {
