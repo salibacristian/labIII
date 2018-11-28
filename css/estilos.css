@@ -1,0 +1,20 @@
+#logo {
+    height: 30%;
+    width: 25%;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    margin: 50px;
+}
+
+#background-header {
+    width: 80%;
+    margin-left: 10%;
+    padding-bottom: 2.5em;
+    background-color: rgb(223, 56, 100);
+}
+
+body {
+    background-color: rgba(35, 130, 255, 0.753)
+} 
+
