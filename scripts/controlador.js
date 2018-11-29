@@ -55,4 +55,17 @@ function manejarActualizarLista(l){
     actualizarTabla(lista);
 }
 
-
+function actualizarTabla(lista){
+    let row = '';
+    lista.forEach(heroe => {
+        row = '<tr>';
+        row += '<td>'+ heroe.id +'</td>';
+        row += '<td>'+ heroe.nombre +'</td>';
+        row += '<td>'+ heroe.apellido +'</td>';
+        row += '<td>'+ heroe.alias +'</td>';
+        row += '<td>'+ heroe.edad +'</td>';
+        row += '<td>'+ heroe.lado +'</td>';
+        row += '</tr>';
+        $("#mainTable-body").append(row);
+    });
+}

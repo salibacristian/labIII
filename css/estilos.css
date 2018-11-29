@@ -15,7 +15,18 @@
     background-color: rgb(223, 56, 100);
 }
 
+#mainTable-body {
+    background-color: rgb(223, 56, 100);  
+}
+
 body {
     background-color: rgba(35, 130, 255, 0.753)
 } 
+
+.mainTable{
+    border: 1px solid black;
+}
+.mainTable-head{
+    background-color: rgba(76, 35, 223, 0.658);
+}
 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
     <script src="./scripts/index.js"></script>   
     <title>ABM SuperHeroes</title>
 </head>
-
 <body>
     <header>
         <div>
@@ -19,7 +17,22 @@
             <img src="./images/logoSuperHeroes.png" alt="logo superheroes" id="logo">   
         </div>
     </header>
-    
+    <div class="container-fluid">
+        <table class="table-responsive mainTable">
+            <thead class="mainTable-head">
+                <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Alias</th>
+                <th>Edad</th>
+                <th>Lado</th>
+                </tr>
+            </thead>
+            <div id="spinner" style="display:none"><img src="./images/spinner.gif"></div>            
+            <tbody id="mainTable-body">                
+            </tbody>
+        </table>
+    </div>       
 </body>
-
 </html>
