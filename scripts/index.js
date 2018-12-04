@@ -6,9 +6,9 @@ window.onload = asignarEventos;
 
 function asignarEventos() {
 
-    // btnAlta.onclick = function () {
-    //     ejecutarTransaccion("Mostrar");
-    // }
+    $("#btnAlta").onclick = function () {
+        ejecutarTransaccion("Mostrar");
+    }
 
     ejecutarTransaccion("actualizarLista");
 
@@ -59,32 +59,36 @@ function modificarPersonaje() {
 
 }
 
-function traerListaHeroes(callback) {
-    //ESTA FUNCION RECIBE COMO PARAMETRO UN CALLBACK, POR SI SE QUIERE USAR 
-    //PARA REFRESCAR LA TABLA A LA VUELTA DE LA PETICION AL SERVIDOR
-    //VER EN CONTROLADOR.JS LA FUNCION ejecutarTransaccion PARA case "actualizarLista"
-    toggleSpinner();
-    $.ajax({
-        type: "get",
-        url: server_url + "traer?collection=heroes"         
-   })
-   .then(function(response){  
-        toggleSpinner();
-        callback(response.data);
-   },function(error){
-        toggleSpinner();
-        console.log(error);
-    //    swal({
-    //     title: "Error",
-    //     text: "Hubo un error al cargar el listado",
-    //     type: "error",
-    //     showCancelButton: false,
-    //     cancelButtonClass: "btn-info",
-    //     cancelButtonText: "cerrar"
-    //     });
-   });
+// function traerListaHeroes(callback) {
 
-}
+//     toggleSpinner();
+//     $.ajax({
+//         type: "get",
+//         url: server_url + "traer?collection=heroes"         
+//    })
+//    .then(function(response){  
+//         toggleSpinner();
+//         callback(response.data);
+//    },function(error){
+//         toggleSpinner();
+//         console.log(error);
+//     //    swal({
+//     //     title: "Error",
+//     //     text: "Hubo un error al cargar el listado",
+//     //     type: "error",
+//     //     showCancelButton: false,
+//     //     cancelButtonClass: "btn-info",
+//     //     cancelButtonText: "cerrar"
+//     //     });
+//    });
+
+// }
+
+function traerListaHeroes(callback) {
+    
+        let list = localStorage.getItem("mainList");
+        callback(list);    
+    }
 
 function toggleSpinner(){
     $('#spinner').toggle(3000);
