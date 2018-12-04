@@ -41,4 +41,19 @@ body {
     margin-top: -5em;
 }
 
+.edit-form {
+    background-color:rgba(47, 0, 255, 0.2);
+    padding: 50px;
+    position: absolute;
+    right: 25%;
+    top: -15em;
+    display: none;
+
+}
+
+.form-label {
+    color: red;
+}
+
+
 

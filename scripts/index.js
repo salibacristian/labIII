@@ -123,3 +123,14 @@ function modificarHeroe(heroe) {
     //AGREGAR CODIGO PARA MODIFICAR EL HEROE
 }
 
+function mostrarFormulario(){
+    let form = $("#edit-form");
+    form.animate({: '300px', opacity: '0.4'}, "slow");
+    form.animate({height: '300px', opacity: '0.4'}, "slow");
+    form.animate({width: '300px', opacity: '0.8'}, "slow");
+    form.animate({height: '100px', opacity: '0.4'}, "slow");
+    form.animate({width: '100px', opacity: '0.8'}, "slow");
+    
+    
+}
+
