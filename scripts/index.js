@@ -6,9 +6,13 @@ window.onload = asignarEventos;
 
 function asignarEventos() {
 
-    $("#btnAlta").onclick = function () {
+    $("#btnAlta").click(function () {
         ejecutarTransaccion("Mostrar");
-    }
+    });
+
+    $("#btnInsertar").click(function () {
+        ejecutarTransaccion("Alta");
+    });
 
     ejecutarTransaccion("actualizarLista");
 
@@ -16,7 +20,15 @@ function asignarEventos() {
 
 function Personaje(id, nombre, apellido, alias, edad, lado) {
     //contructor de objeto Personaje
-
+    let newHeroe = {
+        id: id,
+        nombre: nombre,
+        apellido: apellido,
+        alias: alias,
+        edad: edad,
+        lado: lado
+    };
+    return newHeroe;
 }
 
 function traerIdHeroe(e) {
@@ -32,8 +44,14 @@ function traerIdHeroe(e) {
 }
 
 function altaPersonaje() {
-//genero un nuevo "Personaje", y lo inserto
-
+    //genero un nuevo "Personaje", y lo inserto
+    let id = $('#inputId').val();
+    let nombre = $('#inputName').val();
+    let apellido = $('#inputLastname').val();
+    let alias = $('#inputAs').val();
+    let edad = $('#inputAge').val();
+    let lado = $('#inputId').val();
+    let nuevoPersonaje = Personaje(id,nombre,apellido,alias,edad,lado);
     ejecutarTransaccion("Insertar", nuevoPersonaje);
 }
 
@@ -98,11 +116,16 @@ function toggleSpinner(){
 function insertarHeroe(heroe) {
 
     // Acá va el código de la peticion ajax para insertar el nuevo heroe (POST)
-    var data = {
-        "collection":"heroes",
-        "heroe": heroe
-    }
-    //AGREGAR CODIGO PARA INSERTAR EL HEROE
+    // var data = {
+    //     "collection":"heroes",
+    //     "heroe": heroe
+    // }
+
+    
+    lista.push(heroe);
+    localStorage.setItem('mainList',JSON.stringify(lista));
+    ejecutarTransaccion("Mostrar");
+
 }
 
 function eliminarHeroe(heroe) {
@@ -124,13 +147,10 @@ function modificarHeroe(heroe) {
 }
 
 function mostrarFormulario(){
-    let form = $("#edit-form");
-    form.animate({: '300px', opacity: '0.4'}, "slow");
-    form.animate({height: '300px', opacity: '0.4'}, "slow");
-    form.animate({width: '300px', opacity: '0.8'}, "slow");
-    form.animate({height: '100px', opacity: '0.4'}, "slow");
-    form.animate({width: '100px', opacity: '0.8'}, "slow");
-    
+    let form = $("#edit-form");  
+    form.animate({ right: '30%', padding: '10px' }, "200");  
+    form.show('slow');    
+    form.animate({ right: '25%', padding: '50px' }, "200");        
     
 }
 

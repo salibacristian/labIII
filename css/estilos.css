@@ -42,12 +42,18 @@ body {
 }
 
 .edit-form {
-    background-color:rgba(47, 0, 255, 0.2);
+    background-color:rgba(47, 0, 255, 0.3);
     padding: 50px;
     position: absolute;
     right: 25%;
     top: -15em;
     display: none;
+}
+
+.edit-form-init {
+    background-color:rgba(0, 255, 76, 0.3);
+    padding: 10px;
+
 
 }
 
