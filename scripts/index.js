@@ -28,7 +28,7 @@ function asignarEventos() {
 
 }
 
-function Personaje(id, nombre, apellido, alias, edad, lado) {
+function Personaje(id, nombre, apellido, alias, edad, lado, editorial) {
     //contructor de objeto Personaje
     let newHeroe = {
         id: id,
@@ -36,7 +36,8 @@ function Personaje(id, nombre, apellido, alias, edad, lado) {
         apellido: apellido,
         alias: alias,
         edad: edad,
-        lado: lado
+        lado: lado,
+        editorial: editorial
     };
     return newHeroe;
 }
@@ -61,7 +62,8 @@ function altaPersonaje() {
     let alias = $('#inputAs').val();
     let edad = $('#inputAge').val();
     let lado = $("#inputVillano").is(':checked') ? 2 : 1;
-    let nuevoPersonaje = Personaje(id,nombre,apellido,alias,edad,lado);
+    let editorial = $("#inputEditorial").val();
+    let nuevoPersonaje = Personaje(id, nombre, apellido, alias, edad, lado, editorial);
     ejecutarTransaccion("Insertar", nuevoPersonaje);
     cerrarFormulario();
 }
@@ -82,7 +84,7 @@ function eliminarPersonaje() {
 function modificarPersonaje() {
     //agregar codigo que crea necesario
 
-    var personajeModificado = new Personaje(id, nombre, apellido, alias, edad, lado);
+    var personajeModificado = new Personaje(id, nombre, apellido, alias, edad, lado, editorial);
     ejecutarTransaccion("Modificar", personajeModificado);
     //animacion para cerrar formulario
 
@@ -174,6 +176,38 @@ function cerrarFormulario(){
     $('#inputLastname').val('');
     $('#inputAs').val('');
     $('#inputAge').val('');
+    $('#inputEditorial').val('');
     
+}
+
+function validate(){
+    var rv = {isValid: true, message: ''};
+
+    var id = $('#inputId').val();
+    var age = $('#inputAge').val();
+    if(id == '')
+    {
+        rv.isValid = false;
+        rv.message += "Ingrese ID. "; 
+    }
+    if(lista.find(x => x.id == id)){
+        rv.isValid = false;
+        rv.message += "El id ingresado ya existe. ";
+    }    
+    if($('#inputName').val() == ''){
+        rv.isValid = false;
+        rv.message += "Ingrese un nombre. ";
+    }
+    if($('#inputLastname').val() == ''){
+        rv.isValid = false;
+        rv.message += "Ingrese un apellido. ";
+    }
+    if(age < 1) {//parseint?
+        rv.isValid = false;
+        rv.message += "La edad debe ser mayor a 0. ";
+    }
+    
+    return rv;
+
 }
 

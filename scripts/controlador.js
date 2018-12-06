@@ -13,8 +13,9 @@ function ejecutarTransaccion(transaccion, heroe) {
             break;
 
         case "Alta":
-
-            altaPersonaje();
+            if(validate().isValid)
+                altaPersonaje();
+            else swal('Error',validate().message,'error');
             break;
 
         case "Baja":
@@ -69,7 +70,10 @@ function actualizarTabla(lista){
         row += '<td>'+ heroe.alias +'</td>';
         row += '<td>'+ heroe.edad +'</td>';
         row += '<td>'+ lado +'</td>';
+        row += '<td>'+ heroe.editorial +'</td>';
         row += '</tr>';
         $("#mainTable-body").append(row);
     });
 }
+
+
