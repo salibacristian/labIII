@@ -63,7 +63,7 @@ function actualizarTabla(lista){
     let lado = '';
     lista.forEach(heroe => {
         lado = heroe.lado == 1 ? 'Heroe' : 'Villano';
-        row = '<tr>';
+        row = '<tr onclick = "onclickrow('+ heroe.id +')">';
         row += '<td>'+ heroe.id +'</td>';
         row += '<td>'+ heroe.nombre +'</td>';
         row += '<td>'+ heroe.apellido +'</td>';

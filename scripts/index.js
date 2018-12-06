@@ -1,6 +1,7 @@
 var lista = [];
 const server_url = "http://localhost:3000/";
 var xhr;
+var onclickrow;
 
 window.onload = asignarEventos;
 
@@ -24,6 +25,10 @@ function asignarEventos() {
             $("#inputHeroe").prop("checked", false);        
     });
 
+   onclickrow = function(e){
+        traerIdHeroe(e);
+   }
+
     ejecutarTransaccion("actualizarLista");
 
 }
@@ -42,15 +47,11 @@ function Personaje(id, nombre, apellido, alias, edad, lado, editorial) {
     return newHeroe;
 }
 
-function traerIdHeroe(e) {
+function traerIdHeroe(id) {
 
-    //Este manejador de evento se ejecutra cuando se hace click en la grilla dinamica.
-    //Propuesta: 1)Busco en el DOM el id del personaje a eliminar
-
-    //2)Me traigo el heroe de la lista, haciendo una funcion de buscar, como por ejemplo:
-    //var heroe = lista[buscarHeroe(lista, id)];
-    //3)llamo a ejecutarTransaccion
-    ejecutarTransaccion("MostrarHeroe", heroe);
+    var heroe = lista.find(x => x.id == id);
+    if(heroe)
+        ejecutarTransaccion("MostrarHeroe", heroe);
 
 }
 
@@ -159,8 +160,26 @@ function modificarHeroe(heroe) {
     //AGREGAR CODIGO PARA MODIFICAR EL HEROE
 }
 
-function mostrarFormulario(){
+function mostrarFormulario(heroe){
     let form = $("#edit-form");  
+   
+    if(heroe){
+        let isHero = heroe.lado == 1;
+        $('#inputId').val(heroe.id);
+        $('#inputName').val(heroe.nombre);
+        $('#inputLastname').val(heroe.apellido);
+        $('#inputAs').val(heroe.alias);
+        $('#inputAge').val(heroe.edad);
+        $("#inputHeroe").prop("checked", isHero);  
+        $("#inputVillano").prop("checked", !isHero);  
+        $('#inputEditorial').val(heroe.editorial);
+        $('#btnInsertar').hide();
+        $('#btnMod').show();
+        $('#btnEliminar').show();
+    }
+
+
+   
     form.animate({ right: '30%', padding: '10px' }, "200");  
     form.show('slow');    
     form.animate({ right: '25%', padding: '50px' }, "200");        
@@ -168,6 +187,9 @@ function mostrarFormulario(){
 }
 
 function cerrarFormulario(){
+    $('#btnInsertar').show();
+    $('#btnMod').hide();
+    $('#btnEliminar').hide();
     let form = $("#edit-form");  
     form.animate({ right: '30%', padding: '10px' }, "200");        
     form.hide('slow');  
