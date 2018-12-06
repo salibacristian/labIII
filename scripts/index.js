@@ -1,4 +1,4 @@
-var lista;
+var lista = [];
 const server_url = "http://localhost:3000/";
 var xhr;
 
@@ -12,6 +12,16 @@ function asignarEventos() {
 
     $("#btnInsertar").click(function () {
         ejecutarTransaccion("Alta");
+    });
+
+    $("#inputHeroe").change(function() {
+        if(this.checked) 
+            $("#inputVillano").prop("checked", false);        
+    });
+
+    $("#inputVillano").change(function() {
+        if(this.checked) 
+            $("#inputHeroe").prop("checked", false);        
     });
 
     ejecutarTransaccion("actualizarLista");
@@ -50,9 +60,10 @@ function altaPersonaje() {
     let apellido = $('#inputLastname').val();
     let alias = $('#inputAs').val();
     let edad = $('#inputAge').val();
-    let lado = $('#inputId').val();
+    let lado = $("#inputVillano").is(':checked') ? 2 : 1;
     let nuevoPersonaje = Personaje(id,nombre,apellido,alias,edad,lado);
     ejecutarTransaccion("Insertar", nuevoPersonaje);
+    cerrarFormulario();
 }
 
 
@@ -103,10 +114,11 @@ function modificarPersonaje() {
 // }
 
 function traerListaHeroes(callback) {
-    
-        let list = localStorage.getItem("mainList");
+    if (localStorage.getItem("mainList") !== null) {
+        let list = JSON.parse(localStorage.getItem("mainList"));
         callback(list);    
     }
+}
 
 function toggleSpinner(){
     $('#spinner').toggle(3000);
@@ -124,8 +136,7 @@ function insertarHeroe(heroe) {
     
     lista.push(heroe);
     localStorage.setItem('mainList',JSON.stringify(lista));
-    ejecutarTransaccion("Mostrar");
-
+    ejecutarTransaccion("actualizarLista");
 }
 
 function eliminarHeroe(heroe) {
@@ -151,6 +162,18 @@ function mostrarFormulario(){
     form.animate({ right: '30%', padding: '10px' }, "200");  
     form.show('slow');    
     form.animate({ right: '25%', padding: '50px' }, "200");        
+    
+}
+
+function cerrarFormulario(){
+    let form = $("#edit-form");  
+    form.animate({ right: '30%', padding: '10px' }, "200");        
+    form.hide('slow');  
+    $('#inputId').val('');
+    $('#inputName').val('');
+    $('#inputLastname').val('');
+    $('#inputAs').val('');
+    $('#inputAge').val('');
     
 }
 

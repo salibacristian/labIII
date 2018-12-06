@@ -51,21 +51,25 @@ function ejecutarTransaccion(transaccion, heroe) {
 }
 
 function manejarActualizarLista(l){
-    lista = l;
+    if(l != null)
+        lista = l;
     actualizarTabla(lista);
 }
 
 function actualizarTabla(lista){
-    // let row = '';
-    // lista.forEach(heroe => {
-    //     row = '<tr>';
-    //     row += '<td>'+ heroe.id +'</td>';
-    //     row += '<td>'+ heroe.nombre +'</td>';
-    //     row += '<td>'+ heroe.apellido +'</td>';
-    //     row += '<td>'+ heroe.alias +'</td>';
-    //     row += '<td>'+ heroe.edad +'</td>';
-    //     row += '<td>'+ heroe.lado +'</td>';
-    //     row += '</tr>';
-    //     $("#mainTable-body").append(row);
-    // });
+    $("#mainTable-body").html('');
+    let row = '';
+    let lado = '';
+    lista.forEach(heroe => {
+        lado = heroe.lado == 1 ? 'Heroe' : 'Villano';
+        row = '<tr>';
+        row += '<td>'+ heroe.id +'</td>';
+        row += '<td>'+ heroe.nombre +'</td>';
+        row += '<td>'+ heroe.apellido +'</td>';
+        row += '<td>'+ heroe.alias +'</td>';
+        row += '<td>'+ heroe.edad +'</td>';
+        row += '<td>'+ lado +'</td>';
+        row += '</tr>';
+        $("#mainTable-body").append(row);
+    });
 }
