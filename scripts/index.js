@@ -52,19 +52,19 @@ function asignarEventos() {
 
 }
 
-function Personaje(id, nombre, apellido, alias, edad, lado, editorial) {
-    //contructor de objeto Personaje
-    let newHeroe = {
-        id: id,
-        nombre: nombre,
-        apellido: apellido,
-        alias: alias,
-        edad: edad,
-        lado: lado,
-        editorial: editorial
-    };
-    return newHeroe;
-}
+// function Personaje(id, nombre, apellido, alias, edad, lado, editorial) {
+//     //contructor de objeto Personaje
+//     let newHeroe = {
+//         id: id,
+//         nombre: nombre,
+//         apellido: apellido,
+//         alias: alias,
+//         edad: edad,
+//         lado: lado,
+//         editorial: editorial
+//     };
+//     return newHeroe;
+// }
 
 function traerIdHeroe(id) {
 
@@ -83,7 +83,14 @@ function altaPersonaje() {
     let edad = $('#inputAge').val();
     let lado = $("#inputVillano").is(':checked') ? 2 : 1;
     let editorial = $("#inputEditorial").val();
-    let nuevoPersonaje = Personaje(id, nombre, apellido, alias, edad, lado, editorial);
+    let nuevoPersonaje;
+    if(lado == 1){
+        nuevoPersonaje = new Heroe(id, nombre, apellido, edad, alias, editorial);
+    }
+    else{
+        nuevoPersonaje = new Villano(id, nombre, apellido, edad, alias, editorial);        
+    }
+
     ejecutarTransaccion("Insertar", nuevoPersonaje);
     cerrarFormulario();
 }
@@ -104,7 +111,14 @@ function modificarPersonaje() {
     let edad = $('#inputAge').val();
     let lado = $("#inputVillano").is(':checked') ? 2 : 1;
     let editorial = $("#inputEditorial").val();
-    var personajeModificado = new Personaje(id, nombre, apellido, alias, edad, lado, editorial);
+    var personajeModificado;
+    if(lado == 1){
+        personajeModificado = new Heroe(id, nombre, apellido, edad, alias, editorial);
+    }
+    else{
+        personajeModificado = new Villano(id, nombre, apellido, edad, alias, editorial);        
+        
+    }
     ejecutarTransaccion("Modificar", personajeModificado);
     cerrarFormulario();
 
