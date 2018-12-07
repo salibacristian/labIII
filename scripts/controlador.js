@@ -77,4 +77,50 @@ function actualizarTabla(lista){
     });
 }
 
+function filterColumns(){   
+    
+    let params = [];
+    params.push({ colName: "Id", checked: $("#cbId").is(':checked') });
+    params.push({ colName: "Nombre", checked: $("#cbNombre").is(':checked') });
+    params.push({ colName: "Apellido", checked: $("#cbApellido").is(':checked') });
+    params.push({ colName: "Alias", checked: $("#cbAlias").is(':checked') });
+    params.push({ colName: "Edad", checked: $("#cbEdad").is(':checked') });
+    params.push({ colName: "Lado", checked: $("#cbLado").is(':checked') });
+    params.push({ colName: "Editorial", checked: $("#cbEditorial").is(':checked') });
+   
+    $("#mainTable-head").html('');
+    let head = "<tr>";
+    params.forEach(x => {
+        if(x.checked){
+            head += "<th>"+x.colName+"</th>";
+        } 
+    });
+    head += "</tr>";
+    $("#mainTable-head").html(head);
+
+    $("#mainTable-body").html('');
+    let row = '';
+    let lado = '';
+    lista.forEach(heroe => {
+        lado = heroe.lado == 1 ? 'Heroe' : 'Villano';
+        row = '<tr onclick = "onclickrow('+ heroe.id +')">';
+        if(params[0].checked)
+            row += '<td>'+ heroe.id +'</td>';
+        if(params[1].checked)
+            row += '<td>'+ heroe.nombre +'</td>';
+        if(params[2].checked)
+            row += '<td>'+ heroe.apellido +'</td>';
+        if(params[3].checked)
+            row += '<td>'+ heroe.alias +'</td>';
+        if(params[4].checked)
+            row += '<td>'+ heroe.edad +'</td>';
+        if(params[5].checked)
+            row += '<td>'+ lado +'</td>';
+        if(params[6].checked)
+            row += '<td>'+ heroe.editorial +'</td>';
+
+        row += '</tr>';
+        $("#mainTable-body").append(row);
+    });
+}
 

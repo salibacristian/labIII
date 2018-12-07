@@ -91,9 +91,25 @@
         </div>
         <hr noshade>
         <button class="btn btn-outline-danger btn-sm" onclick="slideAgesPanel()">Edades <i id="iconSlide" class="fa fa-arrow-down"></i></button>
+        <div class="row" id="columnsPanel">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <form>
+                    <label class="checkbox-inline"><input id="cbId" type="checkbox" checked>Id</label>
+                    <label class="checkbox-inline"><input id="cbNombre" type="checkbox" checked>Nombre</label>
+                    <label class="checkbox-inline"><input id="cbApellido" type="checkbox" checked>Apellido</label>
+                    <label class="checkbox-inline"><input id="cbAlias" type="checkbox" checked>Alias</label>
+                    <label class="checkbox-inline"><input id="cbEdad" type="checkbox" checked>Edad</label>
+                    <label class="checkbox-inline"><input id="cbLado" type="checkbox" checked>Lado</label>
+                    <label class="checkbox-inline"><input id="cbEditorial" type="checkbox" checked>Editorial</label>                   
+                </form>
+            </div>
+        </div>
+        <hr noshade>
+        <button class="btn btn-outline-danger btn-sm" onclick="slideColumnsPanel()">Columnas <i id="iconSlideColumns" class="fa fa-arrow-down"></i></button>
+
         <div class = "table-responsive">
             <table class="table mainTable">
-                <thead class="mainTable-head">
+                <thead id="mainTable-head" class="mainTable-head">
                     <tr>
                     <th>Id</th>
                     <th>Nombre</th>

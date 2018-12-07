@@ -8,6 +8,7 @@ window.onload = asignarEventos;
 function asignarEventos() {
 
     $("#agesPanel").slideToggle(1);
+    $("#columnsPanel").slideToggle(1);
 
     $("#btnAlta").click(function () {
         ejecutarTransaccion("Mostrar");
@@ -43,6 +44,9 @@ function asignarEventos() {
         calculateAges($("#selectedType").val());
     });
     
+    $(":checkbox").change(function(){
+        filterColumns();
+    });
 
     ejecutarTransaccion("actualizarLista");
 
@@ -272,6 +276,13 @@ function slideAgesPanel(){
     
 }
 
+function slideColumnsPanel(){
+    $("#columnsPanel").slideToggle(500);
+    $("#iconSlideColumns").toggleClass("fa fa-arrow-down");
+    $("#iconSlideColumns").toggleClass("fa fa-arrow-up");
+    
+}
+
 function calculateAges(filter){
     $("#agesAvg").val('');
     $("#olderName").val('');
@@ -300,3 +311,5 @@ function calculateAges(filter){
      $("#agesAvg").val(avg);
      $("#olderName").val(older.apellido + ' ' + older.nombre);
 }
+
+
