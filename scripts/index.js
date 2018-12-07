@@ -33,6 +33,10 @@ function asignarEventos() {
     ejecutarTransaccion("Modificacion");
     });
 
+    $("#btnEliminar").click(function () {
+        ejecutarTransaccion("Baja");
+        });
+
 
     ejecutarTransaccion("actualizarLista");
 
@@ -76,15 +80,10 @@ function altaPersonaje() {
 
 
 function eliminarPersonaje() {
-    //Propuesta: 1)Busco en el DOM el id del personaje a eliminar
-
-    //2)Me traigo el heroe de la lista, haciendo una funcion de buscar, como por ejemplo:
-    //var heroe = lista[buscarHeroe(lista, id)];
-    //3)llamo a ejecutarTransaccion
+    var id = $('#inputId').val();
+    var heroe = lista.find(x => x.id == id);
     ejecutarTransaccion("Eliminar", heroe);
-
-    //Aca va alguna animacion para cerrar el formulario
-
+    cerrarFormulario();
 }
 
 function modificarPersonaje() {
@@ -158,7 +157,12 @@ function eliminarHeroe(heroe) {
         "collection":"heroes",
         "id": heroe.id
     }
-    //AGREGAR CODIGO PARA ELIMINAR EL HEROE
+    //LOCAL STORAGE
+
+    var index = lista.indexOf(heroe);
+    lista.splice(index,1);
+    localStorage.setItem('mainList',JSON.stringify(lista));
+    ejecutarTransaccion("actualizarLista");
 }
 
 function modificarHeroe(heroe) {
