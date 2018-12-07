@@ -66,7 +66,7 @@
             </div>
         </div> 
         <div class="row" id = "agesPanel">
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label for="selectedType">Filtrar por Tipo</label>
                     <select id="selectedType" class="form-control">
@@ -76,22 +76,21 @@
                     </select>
                 </div>                              
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <label for="selectedType">Promedio de Edad:</label>
+                    <label for="agesAvg">Promedio de Edad:</label>
                     <input  type="number" id="agesAvg" class="form-control" disabled/>
                 </div>
             </div>  
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <label for="selectedType">Personaje mas viejo:</label>
+                    <label for="olderName">Personaje mas viejo:</label>
                     <input  type="text" id="olderName" class="form-control" disabled/>
                 </div>
             </div>       
         </div>
         <hr noshade>
-        <button class="btnSlide" onclick="slideAgesPanel()">Edades <i class="fa fa-arrow-down"></i></button>
-        <i class="fa fa-plus"></i>
+        <button class="btn btn-outline-danger btn-sm" onclick="slideAgesPanel()">Edades <i id="iconSlide" class="fa fa-arrow-down"></i></button>
         <div class = "table-responsive">
             <table class="table mainTable">
                 <thead class="mainTable-head">
