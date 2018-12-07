@@ -259,3 +259,7 @@ function validate(isEdit = false){
 
 }
 
+function slideAgesPanel(){
+    $("#agesPanel").slideToggle(500);
+}
+

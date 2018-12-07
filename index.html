@@ -8,6 +8,8 @@
     <script src="./scripts/jquery.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
     <script src="./scripts/controlador.js"></script>
     <script src="./scripts/index.js"></script>   
     <link rel="stylesheet" href="./css/estilos.css">
@@ -64,6 +66,33 @@
                 </div>
             </div>
         </div> 
+        <div class="row" id = "agesPanel">
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="selectedType">Filtrar por Tipo</label>
+                    <select id="selectedType" class="form-control">
+                        <option value="0"></option>
+                        <option value="1">Heroe</option>
+                        <option value="2">Villano</option>
+                    </select>
+                </div>                              
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="selectedType">Promedio de Edad:</label>
+                    <input  type="number" id="agesAvg" class="form-control" disabled/>
+                </div>
+            </div>  
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="selectedType">Personaje mas viejo:</label>
+                    <input  type="text" id="olderName" class="form-control" disabled/>
+                </div>
+            </div>       
+        </div>
+        <hr noshade>
+        <button class="btnSlide" onclick="slideAgesPanel()">Edades <i class="fa fa-arrow-down"></i></button>
+        <i class="fa fa-plus"></i>
         <div class = "table-responsive">
             <table class="table mainTable">
                 <thead class="mainTable-head">
