@@ -24,8 +24,9 @@ function ejecutarTransaccion(transaccion, heroe) {
             break;
 
         case "Modificacion":
-
-            modificarPersonaje();
+            if(validate(true).isValid)
+                modificarPersonaje();
+            else swal('Error',validate(true).message,'error');            
             break;
 
         case "Insertar":

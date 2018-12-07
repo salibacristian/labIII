@@ -29,6 +29,11 @@ function asignarEventos() {
         traerIdHeroe(e);
    }
 
+   $("#btnMod").click(function () {
+    ejecutarTransaccion("Modificacion");
+    });
+
+
     ejecutarTransaccion("actualizarLista");
 
 }
@@ -83,11 +88,17 @@ function eliminarPersonaje() {
 }
 
 function modificarPersonaje() {
-    //agregar codigo que crea necesario
-
+    let id = $('#inputId').val();
+    let nombre = $('#inputName').val();
+    let apellido = $('#inputLastname').val();
+    let alias = $('#inputAs').val();
+    let edad = $('#inputAge').val();
+    let lado = $("#inputVillano").is(':checked') ? 2 : 1;
+    let editorial = $("#inputEditorial").val();
     var personajeModificado = new Personaje(id, nombre, apellido, alias, edad, lado, editorial);
     ejecutarTransaccion("Modificar", personajeModificado);
-    //animacion para cerrar formulario
+    cerrarFormulario();
+
 
 }
 
@@ -158,6 +169,13 @@ function modificarHeroe(heroe) {
         "heroe": heroe
     }
     //AGREGAR CODIGO PARA MODIFICAR EL HEROE
+
+    //LOCAL STORAGE
+    var heroeOld = lista.find(x => x.id == heroe.id);
+    var index = lista.indexOf(heroeOld);
+    lista[index] = heroe;
+    localStorage.setItem('mainList',JSON.stringify(lista));
+    ejecutarTransaccion("actualizarLista");
 }
 
 function mostrarFormulario(heroe){
@@ -166,6 +184,7 @@ function mostrarFormulario(heroe){
     if(heroe){
         let isHero = heroe.lado == 1;
         $('#inputId').val(heroe.id);
+        $('#inputId').prop("disabled", "disabled");
         $('#inputName').val(heroe.nombre);
         $('#inputLastname').val(heroe.apellido);
         $('#inputAs').val(heroe.alias);
@@ -194,6 +213,7 @@ function cerrarFormulario(){
     form.animate({ right: '30%', padding: '10px' }, "200");        
     form.hide('slow');  
     $('#inputId').val('');
+    $('#inputId').prop("disabled", "");
     $('#inputName').val('');
     $('#inputLastname').val('');
     $('#inputAs').val('');
@@ -202,20 +222,22 @@ function cerrarFormulario(){
     
 }
 
-function validate(){
+function validate(isEdit = false){
     var rv = {isValid: true, message: ''};
 
     var id = $('#inputId').val();
     var age = $('#inputAge').val();
-    if(id == '')
-    {
-        rv.isValid = false;
-        rv.message += "Ingrese ID. "; 
-    }
-    if(lista.find(x => x.id == id)){
-        rv.isValid = false;
-        rv.message += "El id ingresado ya existe. ";
-    }    
+    if(!isEdit){
+        if(id == '')
+        {
+            rv.isValid = false;
+            rv.message += "Ingrese ID. "; 
+        }
+        if(lista.find(x => x.id == id)){
+            rv.isValid = false;
+            rv.message += "El id ingresado ya existe. ";
+        }  
+    }  
     if($('#inputName').val() == ''){
         rv.isValid = false;
         rv.message += "Ingrese un nombre. ";
