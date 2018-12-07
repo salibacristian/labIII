@@ -64,6 +64,7 @@ function actualizarTabla(lista){
     let lado = '';
     lista.forEach(heroe => {
         lado = heroe.lado == 1 ? 'Heroe' : 'Villano';
+        //creo la row
         row = '<tr onclick = "onclickrow('+ heroe.id +')">';
         row += '<td>'+ heroe.id +'</td>';
         row += '<td>'+ heroe.nombre +'</td>';
@@ -73,6 +74,7 @@ function actualizarTabla(lista){
         row += '<td>'+ lado +'</td>';
         row += '<td>'+ heroe.editorial +'</td>';
         row += '</tr>';
+        //inserto la row
         $("#mainTable-body").append(row);
     });
 }

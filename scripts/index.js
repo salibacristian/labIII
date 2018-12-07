@@ -83,12 +83,17 @@ function altaPersonaje() {
     let edad = $('#inputAge').val();
     let lado = $("#inputVillano").is(':checked') ? 2 : 1;
     let editorial = $("#inputEditorial").val();
+
+    //busco la ultima img cargada en el local storage
+    let foto = localStorage.getItem("newImage");
+    foto = foto ? foto : "";
+
     let nuevoPersonaje;
     if(lado == 1){
-        nuevoPersonaje = new Heroe(id, nombre, apellido, edad, alias, editorial);
+        nuevoPersonaje = new Heroe(id, nombre, apellido, edad, foto, alias, editorial);
     }
     else{
-        nuevoPersonaje = new Villano(id, nombre, apellido, edad, alias, editorial);        
+        nuevoPersonaje = new Villano(id, nombre, apellido, edad, foto, alias, editorial);        
     }
 
     ejecutarTransaccion("Insertar", nuevoPersonaje);
@@ -111,12 +116,17 @@ function modificarPersonaje() {
     let edad = $('#inputAge').val();
     let lado = $("#inputVillano").is(':checked') ? 2 : 1;
     let editorial = $("#inputEditorial").val();
+
+    //busco la ultima img cargada en el local storage
+    let foto = localStorage.getItem("newImage");
+    foto = foto ? foto : "";
+
     var personajeModificado;
     if(lado == 1){
-        personajeModificado = new Heroe(id, nombre, apellido, edad, alias, editorial);
+        personajeModificado = new Heroe(id, nombre, apellido, edad, foto, alias, editorial);
     }
     else{
-        personajeModificado = new Villano(id, nombre, apellido, edad, alias, editorial);        
+        personajeModificado = new Villano(id, nombre, apellido, edad, foto, alias, editorial);        
         
     }
     ejecutarTransaccion("Modificar", personajeModificado);
@@ -220,6 +230,12 @@ function mostrarFormulario(heroe){
         $("#inputHeroe").prop("checked", isHero);  
         $("#inputVillano").prop("checked", !isHero);  
         $('#inputEditorial').val(heroe.editorial);
+        $('form-img')
+        let img = document.createElement('img');
+        img.src = heroe.foto;
+        img.style.height = '100px';
+        img.style.width = '100px';
+        document.getElementById("form-img").innerHTML = img.outerHTML;
         $('#btnInsertar').hide();
         $('#btnMod').show();
         $('#btnEliminar').show();
@@ -247,7 +263,7 @@ function cerrarFormulario(){
     $('#inputAs').val('');
     $('#inputAge').val('');
     $('#inputEditorial').val('');
-    
+      document.getElementById("form-img").innerHTML = '';
 }
 
 function validate(isEdit = false){
@@ -326,4 +342,28 @@ function calculateAges(filter){
      $("#olderName").val(older.apellido + ' ' + older.nombre);
 }
 
+function encodeImageFileAsURL() {
+
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+
+      var fileReader = new FileReader();
+
+      fileReader.onload = function(fileLoadedEvent) {
+        var srcData = fileLoadedEvent.target.result; 
+
+        localStorage.setItem("newImage",srcData);
+
+        var newImage = document.createElement('img');
+        newImage.src = srcData;
+        newImage.style.height = '100px';
+        newImage.style.width = '100px';
+
+        document.getElementById("form-img").innerHTML = newImage.outerHTML;
+
+      }
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
 

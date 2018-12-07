@@ -1,10 +1,7 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -12,11 +9,12 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var Personaje = /** @class */ (function () {
-    function Personaje(id, nombre, apellido, edad) {
+    function Personaje(id, nombre, apellido, edad, foto) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
+        this.foto = foto;
     }
     Personaje.prototype.getId = function () {
         return this.id;
@@ -28,8 +26,8 @@ var Personaje = /** @class */ (function () {
 }());
 var Heroe = /** @class */ (function (_super) {
     __extends(Heroe, _super);
-    function Heroe(id, nombre, apellido, edad, alias, editorial) {
-        var _this = _super.call(this, id, nombre, apellido, edad) || this;
+    function Heroe(id, nombre, apellido, edad, foto, alias, editorial) {
+        var _this = _super.call(this, id, nombre, apellido, edad, foto) || this;
         _this.lado = 1;
         _this.alias = alias;
         _this.editorial = editorial;
@@ -39,8 +37,8 @@ var Heroe = /** @class */ (function (_super) {
 }(Personaje));
 var Villano = /** @class */ (function (_super) {
     __extends(Villano, _super);
-    function Villano(id, nombre, apellido, edad, alias, editorial) {
-        var _this = _super.call(this, id, nombre, apellido, edad) || this;
+    function Villano(id, nombre, apellido, edad, foto, alias, editorial) {
+        var _this = _super.call(this, id, nombre, apellido, edad, foto) || this;
         _this.lado = 2;
         _this.alias = alias;
         _this.editorial = editorial;
